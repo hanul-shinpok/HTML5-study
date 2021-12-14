@@ -1,0 +1,25 @@
+{
+	"groups": [
+		{
+			"keys": "Building01_png,TileGrassPath_32x32_png,TileWoodBridgeFence_32x32_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "tmx/Building01.png",
+			"type": "image",
+			"name": "Building01_png"
+		},
+		{
+			"url": "tmx/TileGrassPath_32x32.png",
+			"type": "image",
+			"name": "TileGrassPath_32x32_png"
+		},
+		{
+			"url": "tmx/TileWoodBridgeFence_32x32.png",
+			"type": "image",
+			"name": "TileWoodBridgeFence_32x32_png"
+		}
+	]
+}

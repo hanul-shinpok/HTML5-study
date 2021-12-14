@@ -1,0 +1,6 @@
+class Global {
+
+    public constructor() {
+    }
+
+}
