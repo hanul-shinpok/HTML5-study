@@ -41,9 +41,12 @@ var SceneManager = (function () {
         SceneManager.mainScene = main;
         this.createLoader();
     }
-    ;
     SceneManager.prototype.onStart = function () {
-        this.createInitScene();
+        var _this = this;
+        this.createInitScene().then(function () {
+            _this.createScene();
+            _this.testFunction();
+        });
     };
     SceneManager.prototype.createLoader = function () {
         if (!SceneManager.loader)
@@ -53,23 +56,35 @@ var SceneManager = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, SceneManager.loader.loadMainResource(["ingame"], Global.defaultResouceJson)];
+                    case 0: return [4 /*yield*/, SceneManager.loader.loadMainResource(["preload", "sprite"], "resource/default.res.json")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, SceneManager.loader.loadMapResource("home")];
-                    case 2:
-                        _a.sent();
-                        this.createComponent();
-                        return [2 /*return*/];
+                        return [4 /*yield*/, SceneManager.loader.loadTiledMapResource("home")];
+                    case 2: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    SceneManager.prototype.createComponent = function () {
+    SceneManager.prototype.createScene = function () {
         SceneManager.stage = SceneManager.loader.createObj("TMX", "home");
         SceneManager.mainScene.addChild(SceneManager.stage);
     };
-    SceneManager.dispatcher = new egret.EventDispatcher();
+    /** for tmx test */
+    SceneManager.prototype.testFunction = function () {
+        // 오브젝트의 타입 알아내기
+        console.log(SceneManager.stage);
+        console.log(typeof SceneManager.stage); // object
+        console.log(SceneManager.stage instanceof tiled.TMXTilemap); // true
+        // 오브젝트 레이어와 그 자식 찾기
+        console.log(SceneManager.stage);
+        console.log(SceneManager.stage.getChildByName("trigger"));
+        console.log(SceneManager.stage.getChildByName("trigger").$children);
+        var spawnPoint = SceneManager.stage.getChildByName("trigger").$children.filter(function (obj) { return obj.name == 'spawn'; });
+        console.log(spawnPoint);
+        var sprite = SceneManager.loader.createMovieClip("actor_json", "actor_png", "actor");
+        sprite.gotoAndPlay("run", -1);
+        SceneManager.stage.addChild(sprite);
+    };
     return SceneManager;
 }());
 __reflect(SceneManager.prototype, "SceneManager");

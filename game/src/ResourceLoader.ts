@@ -48,5 +48,11 @@ class ResourceLoader {
         return this.tiles[objName];
     }
 
+    public createMovieClip(textureJson: string, texturePng: string, clipName: string): egret.MovieClip {
+        let factorty = new egret.MovieClipDataFactory(RES.getRes(textureJson), RES.getRes(texturePng));
+        let clip = new egret.MovieClip(factorty.generateMovieClipData(clipName));
+        return clip;
+    }
+
 
 }

@@ -87,24 +87,18 @@ var ResourceLoader = (function () {
             });
         });
     };
-    ResourceLoader.prototype.createObj = function (pkgName, objName) {
-        if (!this.tiles[objName])
-            return null;
-        console.log("TMX Created!! " + objName);
-        return this.tiles[objName];
-    };
-    ResourceLoader.prototype.loadMapResource = function (mapName) {
+    ResourceLoader.prototype.loadTiledMapResource = function (mapName) {
         return __awaiter(this, void 0, void 0, function () {
             var tmxMap, urlLoader, path, that;
             return __generator(this, function (_a) {
                 urlLoader = new egret.URLLoader();
                 urlLoader.dataFormat = egret.URLLoaderDataFormat.TEXT;
-                path = Global.urlTML + mapName + ".tmx";
+                path = "resource/tmx/" + mapName + ".tmx";
                 that = this;
                 return [2 /*return*/, new Promise(function (resolve, reject) {
                         urlLoader.addEventListener(egret.Event.COMPLETE, function (event) {
                             var data = egret.XML.parse(event.target.data);
-                            tmxMap = new tiled.TMXTilemap(Global.sWidth, Global.sHeight, data, path);
+                            tmxMap = new tiled.TMXTilemap(1136, 1136, data, path);
                             tmxMap.render(); // 랜더링 완료를 대기해야 함
                             tmxMap.addEventListener(tiled.TMXImageLoadEvent.ALL_IMAGE_COMPLETE, function () {
                                 that.tiles[mapName] = tmxMap;
@@ -115,6 +109,17 @@ var ResourceLoader = (function () {
                     })];
             });
         });
+    };
+    ResourceLoader.prototype.createObj = function (pkgName, objName) {
+        if (!this.tiles[objName])
+            return null;
+        console.log("TMX Created!! " + objName);
+        return this.tiles[objName];
+    };
+    ResourceLoader.prototype.createMovieClip = function (textureJson, texturePng, clipName) {
+        var factorty = new egret.MovieClipDataFactory(RES.getRes(textureJson), RES.getRes(texturePng));
+        var clip = new egret.MovieClip(factorty.generateMovieClipData(clipName));
+        return clip;
     };
     return ResourceLoader;
 }());

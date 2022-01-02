@@ -3,6 +3,10 @@
 		{
 			"keys": "Building01_png,TileGrassPath_32x32_png,TileWoodBridgeFence_32x32_png,TileGrassWater_32x32_png",
 			"name": "preload"
+		},
+		{
+			"keys": "actor_png,actor_json",
+			"name": "sprite"
 		}
 	],
 	"resources": [
@@ -22,9 +26,34 @@
 			"name": "TileWoodBridgeFence_32x32_png"
 		},
 		{
-			"name": "TileGrassWater_32x32_png",
+			"url": "tmx/TileGrassWater_32x32.png",
 			"type": "image",
-			"url": "tmx/TileGrassWater_32x32.png"
+			"name": "TileGrassWater_32x32_png"
+		},
+		{
+			"url": "sprite/char_walk_left.gif",
+			"type": "image",
+			"name": "char_walk_left_gif"
+		},
+		{
+			"url": "sprite/run.json",
+			"type": "json",
+			"name": "run_json"
+		},
+		{
+			"url": "sprite/run.png",
+			"type": "image",
+			"name": "run_png"
+		},
+		{
+			"url": "sprite/actor.png",
+			"type": "image",
+			"name": "actor_png"
+		},
+		{
+			"url": "sprite/actor.json",
+			"type": "json",
+			"name": "actor_json"
 		}
 	]
 }
