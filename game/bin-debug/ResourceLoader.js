@@ -116,6 +116,8 @@ var ResourceLoader = (function () {
         console.log("TMX Created!! " + objName);
         return this.tiles[objName];
     };
+    /** texture merger 사용하여 json, png 파일 추출
+     * default.res.json에 등록하여 loadConfig 후 불러오기 */
     ResourceLoader.prototype.createMovieClip = function (textureJson, texturePng, clipName) {
         var factorty = new egret.MovieClipDataFactory(RES.getRes(textureJson), RES.getRes(texturePng));
         var clip = new egret.MovieClip(factorty.generateMovieClipData(clipName));

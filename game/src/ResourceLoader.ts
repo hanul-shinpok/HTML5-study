@@ -48,6 +48,8 @@ class ResourceLoader {
         return this.tiles[objName];
     }
 
+    /** texture merger 사용하여 json, png 파일 추출
+     * default.res.json에 등록하여 loadConfig 후 불러오기 */
     public createMovieClip(textureJson: string, texturePng: string, clipName: string): egret.MovieClip {
         let factorty = new egret.MovieClipDataFactory(RES.getRes(textureJson), RES.getRes(texturePng));
         let clip = new egret.MovieClip(factorty.generateMovieClipData(clipName));

@@ -43,6 +43,9 @@ var SceneManager = (function () {
     }
     SceneManager.prototype.onStart = function () {
         var _this = this;
+        /** JS에서는 함수를 메서드(.)로 호출하는 경우
+         * 호출의 주체가 함수명 바로 앞의 객체가 됩니다.
+         * 즉, 점 바로 앞에 명시된 객체가 this가 됩니다. */
         this.createInitScene().then(function () {
             _this.createScene();
             _this.testFunction();
@@ -80,10 +83,34 @@ var SceneManager = (function () {
         console.log(SceneManager.stage.getChildByName("trigger"));
         console.log(SceneManager.stage.getChildByName("trigger").$children);
         var spawnPoint = SceneManager.stage.getChildByName("trigger").$children.filter(function (obj) { return obj.name == 'spawn'; });
-        console.log(spawnPoint);
+        console.log(spawnPoint); // filter는 이터레이션이 가능한 array를 반환합니다.
+        console.log(spawnPoint[0]); // 유니크한 값이라고 약속이 되어 있다면 0번을 써도 좋습니다.
+        // movie clip을 활용하여 캐릭터 생성 -> 추후 제어하기 편하도록 자체 클래스를 생성 후 static 변수에 할당해 관리하는 것이 좋습니다 (개인취향)
         var sprite = SceneManager.loader.createMovieClip("actor_json", "actor_png", "actor");
         sprite.gotoAndPlay("run", -1);
+        // 위치 설정
+        sprite.x = spawnPoint[0].x;
+        sprite.y = spawnPoint[0].y;
+        // 화면에 붙이기
         SceneManager.stage.addChild(sprite);
+        // ...이렇게 짜면 안되지만 일단 예제를 위해 임시로 setInterval을 사용합니다.
+        // 참고로 JS의 setInterval과 setTimeout은 게임에서는 사용을 자제해야 합니다.
+        setInterval(function () {
+            // *** 타일 충돌 구현 1번 ***
+            // 특정 x, y 좌표의 타일 가져오기
+            var currentTile = SceneManager.stage.getLayers()[0].getTile(sprite.x, sprite.y);
+            // private 객체를 강제로 가져왔습니다...다른 해결방법 아시는 분 제보바람
+            if (currentTile['_properties'].filter(function (a) { return a.name == 'collision' && a.value == 'true'; }).length > 0) {
+                console.log("Collision!!");
+            }
+            else {
+                // 충돌이 아니라고 판단하므로 캐릭터를 움직입니다.
+                sprite.gotoAndStop("run");
+                sprite.y += 10;
+                sprite.gotoAndPlay("run", -1);
+            }
+            // *** 타일 충돌 구현 2번 ***
+        }, 500);
     };
     return SceneManager;
 }());
