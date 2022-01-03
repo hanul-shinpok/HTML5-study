@@ -62,15 +62,14 @@ var SceneManager = (function () {
                     case 0: return [4 /*yield*/, SceneManager.loader.loadMainResource(["preload", "sprite"], "resource/default.res.json")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, SceneManager.loader.loadTiledMapResource("home")];
-                    case 2: return [2 /*return*/, _a.sent()];
+                        return [2 /*return*/, SceneManager.loader.loadTiledMapResource("home")];
                 }
             });
         });
     };
     SceneManager.prototype.createScene = function () {
         SceneManager.stage = SceneManager.loader.createObj("TMX", "home");
-        SceneManager.mainScene.addChild(SceneManager.stage);
+        SceneManager.mainScene.addChild(SceneManager.stage); // mainScene의 자식으로 stage를 넣어줍니다.
     };
     /** for tmx test */
     SceneManager.prototype.testFunction = function () {
@@ -85,6 +84,7 @@ var SceneManager = (function () {
         var spawnPoint = SceneManager.stage.getChildByName("trigger").$children.filter(function (obj) { return obj.name == 'spawn'; });
         console.log(spawnPoint); // filter는 이터레이션이 가능한 array를 반환합니다.
         console.log(spawnPoint[0]); // 유니크한 값이라고 약속이 되어 있다면 0번을 써도 좋습니다.
+        // const spawnPoint = SceneManager.stage.getChildByName("trigger").$children.filter(obj => obj.name == 'spawn')[0];
         // movie clip을 활용하여 캐릭터 생성 -> 추후 제어하기 편하도록 자체 클래스를 생성 후 static 변수에 할당해 관리하는 것이 좋습니다 (개인취향)
         var sprite = SceneManager.loader.createMovieClip("actor_json", "actor_png", "actor");
         sprite.gotoAndPlay("run", -1);
@@ -96,7 +96,7 @@ var SceneManager = (function () {
         // ...이렇게 짜면 안되지만 일단 예제를 위해 임시로 setInterval을 사용합니다.
         // 참고로 JS의 setInterval과 setTimeout은 게임에서는 사용을 자제해야 합니다.
         setInterval(function () {
-            // *** 타일 충돌 구현 1번 ***
+            // *** 타일 충돌 구현 ***
             // 특정 x, y 좌표의 타일 가져오기
             var currentTile = SceneManager.stage.getLayers()[0].getTile(sprite.x, sprite.y);
             // private 객체를 강제로 가져왔습니다...다른 해결방법 아시는 분 제보바람
@@ -105,11 +105,10 @@ var SceneManager = (function () {
             }
             else {
                 // 충돌이 아니라고 판단하므로 캐릭터를 움직입니다.
-                sprite.gotoAndStop("run");
-                sprite.y += 10;
-                sprite.gotoAndPlay("run", -1);
+                sprite.gotoAndStop("run"); // 애니메이션 재생중에는 이동시킬 좌표에 새로 스프라이트를 그리는것이 어렵습니다. 잠시멈춰줍니다.
+                sprite.y += 10; // 좌표 이동 후
+                sprite.gotoAndPlay("run", -1); // 다시 재생
             }
-            // *** 타일 충돌 구현 2번 ***
         }, 500);
     };
     return SceneManager;
