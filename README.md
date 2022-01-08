@@ -19,8 +19,8 @@
   - [Promise에 대한 자세한 설명](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 - **async/await**: promise를 보다 쉽고 짧게 구현하기 위한 문법입니다. 함수 이름 앞에 async를 붙여 사용하며, async가 붙은 함수는 무조건 promise를 반환합니다. 어떠한 구문 앞에 await를 붙일 경우, Promise가 완전히 이행(fulfilled)될 때 까지 작업을 잠시 중단하고 기다리게 됩니다.
   ![image](https://github.com/hanul-shinpok/HTML5-study/blob/main/ex-picture/await.jpg)
-  - 노란색: 기다리지 않고 promise를 반환
-  - 핑크색: 실행 완료를 기다렸다가 값을 반환
+  - 노란색: 기다리지 않고 promise를 출력
+  - 핑크색: 실행 완료를 기다렸다가 값을 출력
 - **스코프(scope)**: 식별자의 유효범위
   - 식별자(identifier): 변수, 함수, 속성, 메소드 등의 이름을 의미
 - **정적 스코프(lexical scope)**: 함수를 어디서 선언하였는지에 따라 상위 스코프를 결정합니다. 예시로 화살표 함수의 경우 자기 자신의 this가 없으며, 대신(?) 선언부의 바로 상위 스코프의 this를 가집니다.
