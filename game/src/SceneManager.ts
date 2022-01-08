@@ -18,7 +18,8 @@ class SceneManager {
     public onStart() {
         /** JS에서는 함수를 메서드(.)로 호출하는 경우 
          * 호출의 주체가 함수명 바로 앞의 객체가 됩니다.
-         * 즉, 점 바로 앞에 명시된 객체가 this가 됩니다. */
+         * 즉, 점 바로 앞에 명시된 객체가 this가 됩니다.
+         * + 화살표 함수는 lexical scope를 가집니다. */
         this.createInitScene().then(() => {
             this.createScene();
             this.testFunction();
@@ -32,7 +33,7 @@ class SceneManager {
     private async createInitScene() {
         await SceneManager.loader.loadMainResource(["preload", "sprite"], "resource/default.res.json");
         return SceneManager.loader.loadTiledMapResource("home");
-        // async 함수는 언제나 promiss를 반환합니다.
+        // async 함수는 언제나 promise를 반환합니다.
     }
 
     private createScene() {
@@ -53,7 +54,7 @@ class SceneManager {
         console.log(SceneManager.stage.getChildByName("trigger").$children);
 
         const spawnPoint = SceneManager.stage.getChildByName("trigger").$children.filter(obj => obj.name == 'spawn');
-        console.log(spawnPoint); // filter는 이터레이션이 가능한 array를 반환합니다.
+        console.log(spawnPoint); // filter는 이터레이션이 가능한 array를 반환합니다. (map, reduce, fillter)
         console.log(spawnPoint[0]); // 유니크한 값이라고 약속이 되어 있다면 0번을 써도 좋습니다.
         // const spawnPoint = SceneManager.stage.getChildByName("trigger").$children.filter(obj => obj.name == 'spawn')[0];
 
