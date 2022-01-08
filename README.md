@@ -13,16 +13,21 @@
 ![image](https://user-images.githubusercontent.com/32667619/148628773-db011d39-15cf-4621-adf7-29b095bafa6a.png)
 - **동기(synchronous)**: 순차적, 직렬적으로 일을 수행하는 방식, 일반적으로 결과물을 받아야지만 다음 동작을 수행합니다.
 - **비동기(asynchronous)**: 병렬적으로 일을 수행하는 방식, 병렬적으로 일을 수행하기 위해서는 일반적으로 멀티스레드여야합니다. 그러나 자바스크립트는 싱글스레드이므로 비동기 관련 작업은 Web API에 이관합니다.
-  - WebAPI: AJAX, setTimeout()등의 비동기 작업을 처리하는 브라우저의 API
-- **promise**: 콜백 함수 문법의 일종으로, 작업이 끝난 후 실행할 함수나 메소드를 .then()으로 지정할 수 있습니다.
-- **async/await**: promise를 보다 쉽고 짧게 구현하기 위한 문법입니다. 함수 이름 앞에 async를 붙여 사용하며, async가 붙은 함수는 무조건 promise를 반환합니다.
-- **스코프(scope)**: 식별자에 대한 유효범위
+  - WebAPI: AJAX, setTimeout()등의 **비동기 작업**을 처리하는 브라우저의 API
+- **promise**: JS 비동기 작업의 '상태'와 결과 값입니다. 비동기 처리를 위한 객체의 일종입니다. 비동기 작업이 끝난 후 실행할 함수나 메소드를 .then()으로 콜백할 수 있습니다.
+  - Promise는 다음 중 하나의 상태를 가집니다; 대기(pending), 이행(fulfilled), 거부(rejected)
+  - [Promise에 대한 자세한 설명](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+- **async/await**: promise를 보다 쉽고 짧게 구현하기 위한 문법입니다. 함수 이름 앞에 async를 붙여 사용하며, async가 붙은 함수는 무조건 promise를 반환합니다. 어떠한 구문 앞에 await를 붙일 경우, Promise가 완전히 이행(fulfilled)될 때 까지 작업을 잠시 중단하고 기다리게 됩니다.
+  ![image](https://github.com/hanul-shinpok/HTML5-study/blob/main/ex-picture/await.jpg)
+  - 노란색: 기다리지 않고 promise를 반환
+  - 핑크색: 실행 완료를 기다렸다가 값을 반환
+- **스코프(scope)**: 식별자의 유효범위
   - 식별자(identifier): 변수, 함수, 속성, 메소드 등의 이름을 의미
 - **정적 스코프(lexical scope)**: 함수를 어디서 선언하였는지에 따라 상위 스코프를 결정합니다. 예시로 화살표 함수의 경우 자기 자신의 this가 없으며, 대신(?) 선언부의 바로 상위 스코프의 this를 가집니다.
-
+<br></br>
 - **렌더링(rendering)**: 연산 결과를 화면의 픽셀로 그려주는 과정
-- **드로우콜(drwacall)**: CPU가 GPU에게 렌더링을 요청 하는 횟수, =연산 결과를 요청하는 횟수
-- **tick**: 하나의 업데이트 동작이 소비하는 시간 단위
+- **드로우콜(drawcall)**: CPU가 GPU에게 렌더링을 요청 하는 횟수, =연산 결과를 요청하는 횟수
+- **tick**: 게임에서 하나의 업데이트 동작이 소비하는 시간 단위
 - **FPS**: 게임이 1초에 처리하는 프레임 수를 측정한 것, 60FPS 기준으로 약 16.6ms마다 한 프레임을 처리합니다.
 
 ### 이상한 자바스크립트
@@ -37,3 +42,4 @@
 - [JavaScript - 값으로서 함수와 콜백 (3/4) : 콜백](https://www.youtube.com/watch?v=R2AcG_SoCMk&list=PLuHgQVnccGMA4uSig3hCjl7wTDeyIeZVU&index=63)
 - [JavaScript - 값으로서 함수와 콜백 (4/4) : 비동기 콜백](https://www.youtube.com/watch?v=NDFjwybbong&list=PLuHgQVnccGMA4uSig3hCjl7wTDeyIeZVU&index=64)
 - [JavaScript 객체지향 프로그래밍 - 5. this](https://www.youtube.com/watch?v=-LWOv0PlcRA&list=PLuHgQVnccGMAMctarDlPyv6upFUUnpSO3&index=7)
+- [개발자 90%가 모르는 자바스크립트 동작원리 (Stack, Queue, event loop); 동기, ](https://www.youtube.com/watch?v=v67LloZ1ieI&t=6s)
