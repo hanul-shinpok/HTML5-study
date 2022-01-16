@@ -10,6 +10,7 @@
 		"libs/modules_ex/game/game.js"
 	],
 	"game": [
+		"bin-debug/game.js",
 		"bin-debug/Global.js",
 		"bin-debug/Main.js",
 		"bin-debug/ResourceLoader.js",

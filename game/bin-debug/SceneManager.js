@@ -45,7 +45,8 @@ var SceneManager = (function () {
         var _this = this;
         /** JS에서는 함수를 메서드(.)로 호출하는 경우
          * 호출의 주체가 함수명 바로 앞의 객체가 됩니다.
-         * 즉, 점 바로 앞에 명시된 객체가 this가 됩니다. */
+         * 즉, 점 바로 앞에 명시된 객체가 this가 됩니다.
+         * + 화살표 함수는 lexical scope를 가집니다. */
         this.createInitScene().then(function () {
             _this.createScene();
             _this.testFunction();
@@ -82,7 +83,7 @@ var SceneManager = (function () {
         console.log(SceneManager.stage.getChildByName("trigger"));
         console.log(SceneManager.stage.getChildByName("trigger").$children);
         var spawnPoint = SceneManager.stage.getChildByName("trigger").$children.filter(function (obj) { return obj.name == 'spawn'; });
-        console.log(spawnPoint); // filter는 이터레이션이 가능한 array를 반환합니다.
+        console.log(spawnPoint); // filter는 이터레이션이 가능한 array를 반환합니다. (map, reduce, fillter)
         console.log(spawnPoint[0]); // 유니크한 값이라고 약속이 되어 있다면 0번을 써도 좋습니다.
         // const spawnPoint = SceneManager.stage.getChildByName("trigger").$children.filter(obj => obj.name == 'spawn')[0];
         // movie clip을 활용하여 캐릭터 생성 -> 추후 제어하기 편하도록 자체 클래스를 생성 후 static 변수에 할당해 관리하는 것이 좋습니다 (개인취향)
