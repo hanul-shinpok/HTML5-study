@@ -29,5 +29,10 @@
       "name": "game",
       "path": "./libs/modules_ex/game"
     }
-  ]
+  ],
+  "eui": {
+    "exmlRoot": [
+      "resource/eui_skins"
+    ]
+  }
 }

@@ -43,4 +43,32 @@ class game {
     }
 
 
+
+
+    public egretLifecycleExample(): void {
+        egret.lifecycle.LifecycleContext.prototype;
+
+        egret.lifecycle.addLifecycleListener((context) => {
+            // custom lifecycle plugin
+            console.log(context);
+
+
+            context.onUpdate = () => {
+                // egret.startTick()이 내장되어있음
+                console.log("egret.lifecycle onUpate!!");
+            };
+        })
+
+        egret.lifecycle.onPause = () => {
+            // 게임을 잠시 중단 시킬 때 (틱을 강제로 멈춥니다)
+            egret.ticker.pause();
+        }
+
+        egret.lifecycle.onResume = () => {
+            // 중단된 게임을 다시 복구 시킬 때 (틱을 다시 돌립니다)
+            egret.ticker.resume();
+        }
+    }
+
+
 }
